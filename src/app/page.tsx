@@ -11,7 +11,7 @@ export default function Home() {
   // https://nextjs.org/docs/app/building-your-application/routing/pages
 
   const client = createThirdwebClient({
-    clientId: process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID as string,
+    clientId: process.env.CLIENT_ID as string,
   });
 
   return (
