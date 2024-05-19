@@ -1,18 +1,45 @@
+"use client"
 import Image from "next/image";
+import { useEffect, useState } from 'react';
 import Header from "./components/Header";
 import QuantityPriceModule from "./components/QuantityPriceModule";
 import AIGNMachine from "./components/AIGNMachine";
 import AboutAccordion from "./components/AboutAccordion";
 import Footer from "./components/Footer";
-import { createThirdwebClient } from "thirdweb";
+import { createWallet, injectedProvider } from "thirdweb/wallets";
+import { createThirdwebClient, getContract, resolveMethod } from "thirdweb";
+import { optimismSepolia } from "thirdweb/chains";
+import axios from 'axios';
 
 export default function Home() {
-  // Page is a Next convention which works like index.
-  // https://nextjs.org/docs/app/building-your-application/routing/pages
+  const [cbData, setCBData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`/api/cb`);
+        setCBData(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+    console.log(cbData)
+  }, []);
+
 
   const client = createThirdwebClient({
     clientId: process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID as string,
   });
+
+  const contract = getContract({ 
+    client, 
+    chain: optimismSepolia, 
+    address: "0x..."
+  });
+
+  const metamask = createWallet("io.metamask");
 
   return (
     <>
