@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   title: "GM",
   description: "GM - v1",
 };
+const activeChainId = 8453; // Base chain ID
 
 
 // The {children} prop: https://welearncode.com/use-children-react/
@@ -27,6 +28,9 @@ export default function RootLayout({
         <ThirdwebProviderComponent>
           {children}
         </ThirdwebProviderComponent>
+        <ThirdwebProvider desiredChainId={activeChainId}>
+          {children}
+        </ThirdwebProvider>
       </body>
     </html>
   );
