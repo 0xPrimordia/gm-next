@@ -1,3 +1,4 @@
+'use client'
 import Image from "next/image";
 import Header from "./components/Header";
 import QuantityPriceModule from "./components/QuantityPriceModule";
@@ -22,15 +23,11 @@ import {
 } from "@thirdweb-dev/react";
 import { BigNumber, utils } from "ethers";
 import { useMemo, useState } from "react";
-import { HeadingImage } from "./components/HeadingImage";
-import { PoweredBy } from "./components/PoweredBy";
 import { useToast } from "./components/ui/use-toast";
 import { parseIneligibility } from "./utils/parseIneligibility";
 import {
   clientIdConst,
   contractConst,
-  primaryColorConst,
-  themeConst,
 } from "./consts/parameters";
 
 export default function Home() {
